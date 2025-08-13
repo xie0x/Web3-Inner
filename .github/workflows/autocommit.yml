@@ -2,7 +2,7 @@ name: Auto Commit Changes
 
 on:
   schedule:
-    - cron: "0 */4 * * *"  # Every 4 hours
+    - cron: "0 */4 * * *"  # Every 4 hours (UTC)
   workflow_dispatch:       # Allow manual run
 
 jobs:
@@ -14,9 +14,20 @@ jobs:
 
       - name: Make changes
         run: |
-          echo "$(date) - auto update" >> data.md
+          echo "$(date) - auto update" >> example_data.md
+
+      - name: Check for changes
+        id: git-check
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          if git diff --quiet; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
 
       - name: Commit changes
+        if: steps.git-check.outputs.changed == 'true'
         uses: stefanzweifel/git-auto-commit-action@v2.3.0
         with:
           commit_message: Apply automatic changes
