@@ -35,9 +35,7 @@ jobs:
         with:
           commit_message: "Auto update: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
           branch: ${{ github.ref_name }}
-          commit_options: |
-            --no-verify
-            --signoff
+          commit_options: ''
           file_pattern: 'example_data.md'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
