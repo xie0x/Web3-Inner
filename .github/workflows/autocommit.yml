@@ -5,6 +5,9 @@ on:
     - cron: "0 */4 * * *"  # Every 4 hours (UTC)
   workflow_dispatch:       # Allow manual run
 
+permissions:
+  contents: write
+
 jobs:
   auto-commit:
     runs-on: ubuntu-latest
