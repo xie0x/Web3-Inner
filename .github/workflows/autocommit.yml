@@ -14,7 +14,10 @@ jobs:
 
       - name: Make changes
         run: |
-          echo "$(date) - auto update" >> example_data.md
+          echo "## Update on $(date -u +'%Y-%m-%d %H:%M:%S UTC')" >> example_data.md
+          echo "" >> example_data.md
+          echo "- Automated update by GitHub Actions" >> example_data.md
+          echo "" >> example_data.md
 
       - name: Check for changes
         id: git-check
