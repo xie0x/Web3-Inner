@@ -1,12 +1,8 @@
 - uses: stefanzweifel/git-auto-commit-action@v2.3.0
   with:
     commit_message: Apply automatic changes
-    branch: ${{ github.head_ref }}
-
-    # Optional git params
+    branch: ${{ github.ref_name }}
     commit_options: '--no-verify --signoff'
-
-    # Optional glob pattern of files which should be added to the commit
-    file_pattern: /\*data.md
+    file_pattern: '*data.md'
   env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
