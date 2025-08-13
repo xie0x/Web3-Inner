@@ -36,7 +36,7 @@ jobs:
         if: steps.git-check.outputs.changed == 'true'
         uses: stefanzweifel/git-auto-commit-action@v2.3.0
         with:
-          commit_message: "Auto update: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+          commit_message: "Auto update by xie0x"
           branch: ${{ github.ref_name }}
           commit_options: ''
           file_pattern: 'example_data.md'
